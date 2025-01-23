@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS_homework1!</title>
+    <link rel="stylesheet" href="csshw1.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Gaegu&family=Gasoek+One&family=Nanum+Pen+Script&display=swap');
+
+        body {
+            font-family: "Gaegu", sans-serif;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="main">
+        <img src="이미지/썸네일.jpg" class="image">
+        <div class="textbox">
+            <div class="title">
+                <h1>Welcome to Fukuoka!!</h1>
+            </div>
+            <div class="text">
+                <p><b>push the button below to start !!</b></p>
+            </div>
+        </div>
+        <div class="buttonbox">
+            <button id="start-button"><b>START</b></button>
+        </div>
+    </div>
+
+    <div class="box" id="locations">
+        <div class="location" data-detail="Fukuoka, Hakata Ward, Hakata Station">
+            <b># HAKATA station</b>
+            <div class="detail">Fukuoka, Hakata Ward, Hakata Station</div>
+        </div>
+        <div class="location" data-detail="Fukuoka, Chuo Ward, Tenjin">
+            <b># Mina Tenjin</b>
+            <div class="detail">Fukuoka, Chuo Ward, Tenjin</div>
+        </div>
+        <div class="location" data-detail="Fukuoka, Chuo Ward, Parco">
+            <b># Parco shopping center</b>
+            <div class="detail">Fukuoka, Chuo Ward, Parco</div>
+        </div>
+        <div class="location" data-detail="Fukuoka, Sawara Ward, Fukuoka Tower">
+            <b># Fukuoka Tower</b>
+            <div class="detail">Fukuoka, Sawara Ward, Fukuoka Tower</div>
+        </div>
+    </div>
+
+    <script>
+        // START 버튼 이벤트 처리
+        var startButton = document.getElementById('start-button');
+        startButton.onclick = function() {
+            alert("wnnye's trip in Fukuoka, starting right now!");
+        };
+
+        // 모든 .location 요소에 대해 이벤트 리스너 추가
+        var locationElements = document.querySelectorAll('.location');
+
+        locationElements.forEach(function(location) {
+            location.addEventListener('mouseover', function() {
+                showDetail(location);
+            });
+            location.addEventListener('mouseout', function() {
+                hideDetail(location);
+            });
+        });
+
+        // 상세 주소 표시 함수
+        function showDetail(element) {
+            var detailText = element.getAttribute('data-detail');
+            var detailDiv = element.querySelector('.detail');
+            detailDiv.innerHTML = detailText; // HTML로 설정하여 <br> 태그가 해석되도록 함
+            detailDiv.style.display = 'block';
+        }
+
+        // 상세 주소 숨김 함수
+        function hideDetail(element) {
+            var detailDiv = element.querySelector('.detail');
+            if (detailDiv) {
+                detailDiv.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
